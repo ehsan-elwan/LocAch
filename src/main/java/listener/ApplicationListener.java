@@ -1,7 +1,6 @@
 package listener;
 
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
