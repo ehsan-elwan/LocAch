@@ -17,6 +17,7 @@ import java.util.Date;
  */
 public class Gerant {
 
+    private final String gender;
     private final String nom;
     private final String prenom;
     private final int cp;
@@ -30,7 +31,7 @@ public class Gerant {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream("Config.properties");
-        props.getProperty("LOC_USERLNAME");
+        this.gender = props.getProperty("LOC_GENDER");
         this.nom = props.getProperty("LOC_USERLNAME");
         this.prenom = props.getProperty("LOC_USERFNAME");
         this.cp = Integer.valueOf(props.getProperty("LOC_PC"));

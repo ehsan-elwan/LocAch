@@ -9,35 +9,53 @@ import java.sql.Date;
 
 /**
  *
- * @author ehsan
+ * @author Ehsan
  */
 public class Locataire {
-    
-    private int locId;
-    private final String fname;
-    private final String lname;
+
+    private final String prenom;
+    private final String nom;
     private final String email;
     private final String phone;
-    private final Date bdate;
-    
-    public Locataire(String fname, String lname, String email, String phone, Date bdate){
-        this.bdate=bdate;
-        this.email=email;
-        this.fname=fname;
-        this.lname=lname;
-        this.phone=phone;
+    private final Date ne;
+    private final String gender;
+    private final String neAVille;
+    private final String neAPay;
+
+    public Locataire(String prenom, String nom, String email, String phone,
+            Date ne, String gender, String neAVille, String neAPay) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.phone = phone;
+        this.ne = ne;
+        this.gender = gender;
+        this.neAVille = neAVille;
+        this.neAPay = neAPay;
     }
 
-    public int getLocId() {
-        return locId;
+    public Date getNe() {
+        return ne;
     }
 
-    public String getFname() {
-        return fname;
+    public String getNeAVille() {
+        return neAVille;
     }
 
-    public String getLname() {
-        return lname;
+    public String getNeAPay() {
+        return neAPay;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getEmail() {
@@ -49,7 +67,7 @@ public class Locataire {
     }
 
     public Date getBdate() {
-        return bdate;
+        return ne;
     }
-            
+
 }

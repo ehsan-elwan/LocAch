@@ -1,39 +1,29 @@
 package model;
 
-import javax.sql.DataSource;
-import org.postgresql.ds.PGPoolingDataSource;
-
 /**
  *
  * @author Ehsan
  */
+import java.io.File;
+import java.sql.Connection;
+import java.sql.SQLException;
+import org.sqlite.SQLiteConfig;
+import org.sqlite.SQLiteConfig.SynchronousMode;
+import org.sqlite.SQLiteDataSource;
+
 public class DataSourceFactory {
 
-    public enum DriverType {
-        server
-    };
+    public Connection DataSourceFactory() throws ClassNotFoundException, SQLException {
 
-    /**
-     * Renvoie la source de données (server ou embbeded)
-     *
-     * @param type le type de la source de données
-     * @return la source de données
-     */
-    private static final DriverType TYPE = DriverType.server;
-
-    public static DataSource getDataSource(DriverType type) {
-        DataSource result;
-
-        PGPoolingDataSource source = new PGPoolingDataSource();
-        source.setDataSourceName("Locach");
-        source.setServerName("192.168.1.83");
-        source.setDatabaseName("Locach");
-        source.setUser("ehsan");
-        source.setPassword("ehsan123");
-        source.setMaxConnections(3);
-        result = source;
-
-        return result;
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classloader.getResource("Loc_Ach.db").getFile());
+        Class.forName("org.sqlite.JDBC");
+        SQLiteConfig conf = new SQLiteConfig();
+        conf.setSharedCache(true);
+        conf.setSynchronous(SynchronousMode.OFF);
+        SQLiteDataSource ds = new SQLiteDataSource(conf);
+        ds.setUrl("jdbc:sqlite:" + file.getPath());
+        return ds.getConnection();
     }
 
 }

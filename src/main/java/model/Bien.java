@@ -12,7 +12,7 @@ package model;
 public class Bien {
 
     private final int porte;
-    private final String address;
+    private final String adresse;
     private final String batiment;
     private final int etage;
     private final int cp;
@@ -33,9 +33,13 @@ public class Bien {
     private final boolean cable;
     private final String autre;
 
-    public Bien(int porte, String address, String batiment, int etage, int cp, String commune, float surface, int nbpiece, String description, int cave, int parking, int garage, int chauffage, int eauChaude, boolean antenneTV, boolean interphone, boolean gardiennage, boolean ascenseur, boolean digicode, boolean cable, String autre) {
+    public Bien(int porte, String adresse, String batiment, int etage, int cp,
+            String commune, float surface, int nbpiece, String description,
+            int cave, int parking, int garage, int chauffage, int eauChaude,
+            boolean antenneTV, boolean interphone, boolean gardiennage,
+            boolean ascenseur, boolean digicode, boolean cable, String autre) {
         this.porte = porte;
-        this.address = address;
+        this.adresse = adresse;
         this.batiment = batiment;
         this.etage = etage;
         this.cp = cp;
@@ -117,8 +121,8 @@ public class Bien {
         return porte;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getBatiment() {
