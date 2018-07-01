@@ -5,7 +5,11 @@
  */
 package model;
 
-import java.sql.Date;
+import java.io.InputStream;
+import java.text.ParseException;
+import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -21,14 +25,19 @@ public class Gerant {
     private final Date ne;
     private final String neA;
 
-    public Gerant(String nom, String prenom, int cp, String adresse, String commune, Date ne, String neA) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.cp = cp;
-        this.adresse = adresse;
-        this.commune = commune;
-        this.ne = ne;
-        this.neA = neA;
+    public Gerant() throws ParseException {
+        Properties props = new Properties();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream is = classloader.getResourceAsStream("Config.properties");
+        props.getProperty("LOC_USERLNAME");
+        this.nom = props.getProperty("LOC_USERLNAME");
+        this.prenom = props.getProperty("LOC_USERFNAME");
+        this.cp = Integer.valueOf(props.getProperty("LOC_PC"));
+        this.adresse = props.getProperty("LOC_ADDRESS");
+        this.commune = props.getProperty("LOC_REG");
+        this.ne = formatter.parse(props.getProperty("LOC_BIRTHDATE"));
+        this.neA = props.getProperty("LOC_BIRTHCITY");
     }
 
     public Date getNe() {
