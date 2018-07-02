@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author ehsan
+ * @author Ehsan
  */
 public class Bien {
 
@@ -32,11 +32,12 @@ public class Bien {
     private final boolean digicode;
     private final boolean cable;
     private final String autre;
+    private final String type;
 
     public Bien(int porte, String adresse, String batiment, int etage, int cp,
             String commune, float surface, int nbpiece, String description,
             int cave, int parking, int garage, int chauffage, int eauChaude,
-            boolean antenneTV, boolean interphone, boolean gardiennage,
+            boolean antenneTV, boolean interphone, boolean gardiennage, String type,
             boolean ascenseur, boolean digicode, boolean cable, String autre) {
         this.porte = porte;
         this.adresse = adresse;
@@ -59,6 +60,11 @@ public class Bien {
         this.digicode = digicode;
         this.cable = cable;
         this.autre = autre;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public int getPorte() {

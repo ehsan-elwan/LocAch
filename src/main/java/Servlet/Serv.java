@@ -44,37 +44,20 @@ public class Serv extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-                DataSourceFactory ds = new DataSourceFactory();
+        response.setContentType("application/json;charset=UTF-8");
 
-        try (Connection connection = ds.DataSourceFactory();
-                PreparedStatement stmt = connection.prepareStatement("select * from Locataire;")) {
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    System.out.println(rs.getString("nom"));
-                    System.out.println(rs.getString("ne"));
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        File file = new File(classloader.getResource("Docs/contrat-de-location-.docx").getFile());
+        Docx docx = new Docx(file.getPath());
+        docx.setVariablePattern(new VariablePattern("#{", "}"));
 
-                    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-                    File file = new File(classloader.getResource("Docs/contrat-de-location-.docx").getFile());
-                    Docx docx = new Docx(file.getPath());
-                    docx.setVariablePattern(new VariablePattern("#{", "}"));
+        Variables variables = new Variables();
+        variables.addTextVariable(new TextVariable("#{firstname}", "Lukasz"));
+        variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
 
-                    Variables variables = new Variables();
-                    variables.addTextVariable(new TextVariable("#{firstname}", "Lukasz"));
-                    variables.addTextVariable(new TextVariable("#{lastname}", "Stypka"));
-
-                    docx.fillTemplate(variables);
-                    docx.save(file.getAbsolutePath());
-                }
-
-            }
-            stmt.close();
-            // connection.close();
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        docx.fillTemplate(variables);
+        docx.save(file.getAbsolutePath());
+        response.sendRedirect(file.getPath());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

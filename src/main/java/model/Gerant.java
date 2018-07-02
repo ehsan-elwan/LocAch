@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Properties;
@@ -24,13 +25,14 @@ public class Gerant {
     private final String adresse;
     private final String commune;
     private final Date ne;
-    private final String neA;
+    private final String neAVille;
 
-    public Gerant() throws ParseException {
+    public Gerant() throws ParseException, IOException {
         Properties props = new Properties();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         InputStream is = classloader.getResourceAsStream("Config.properties");
+        props.load(is);
         this.gender = props.getProperty("LOC_GENDER");
         this.nom = props.getProperty("LOC_USERLNAME");
         this.prenom = props.getProperty("LOC_USERFNAME");
@@ -38,15 +40,15 @@ public class Gerant {
         this.adresse = props.getProperty("LOC_ADDRESS");
         this.commune = props.getProperty("LOC_REG");
         this.ne = formatter.parse(props.getProperty("LOC_BIRTHDATE"));
-        this.neA = props.getProperty("LOC_BIRTHCITY");
+        this.neAVille = props.getProperty("LOC_BIRTHCITY");
     }
 
     public Date getNe() {
         return ne;
     }
 
-    public String getNeA() {
-        return neA;
+    public String getNeAVille() {
+        return neAVille;
     }
 
     public String getNom() {
@@ -63,6 +65,10 @@ public class Gerant {
 
     public String getAdresse() {
         return adresse;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public String getCommune() {

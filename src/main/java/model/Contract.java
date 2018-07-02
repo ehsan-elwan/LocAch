@@ -5,29 +5,62 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
  * @author Ehsan
  */
 public class Contract {
-    private Locataire loc;
-    private Bien bien;
-    private Date debut;
-    private Date fin;
-    private float loyee;
-    private int valueIndice;
-    private boolean etatDesLieux;
-    private boolean diagnosticTechnique;
-    private boolean extraitsReglementCopropriete;
-    private boolean listeLoyersReference;
-    private boolean modalitésServices;
-    private boolean acteCautionSolidaire;
-    private int remisesCles;
-    private String faitA;
-    private boolean habitationExclusivement;
+    private final Locataire loc;
+    private final Bien bien;
+    private final Date debut;
+    private final Date fin;
+    private final float loyee;
+    private final int valueIndice;
+    private final boolean etatDesLieux;
+    private final boolean diagnosticTechnique;
+    private final boolean extraitsReglementCopropriete;
+    private final boolean listeLoyersReference;
+    private final boolean modalitésServices;
+    private final boolean acteCautionSolidaire;
+    private final int remisesCles;
+    private final String faitA;
+    private final boolean habitationExclusivement;
+    private final int locID;
+    private final int bienID;
 
+    public Contract(Locataire loc, Bien bien, Date debut, Date fin, float loyee, int valueIndice, boolean etatDesLieux, boolean diagnosticTechnique, boolean extraitsReglementCopropriete, boolean listeLoyersReference, boolean modalitésServices, boolean acteCautionSolidaire, int remisesCles, String faitA, boolean habitationExclusivement, int locID, int bienID) {
+        this.loc = loc;
+        this.bien = bien;
+        this.debut = debut;
+        this.fin = fin;
+        this.loyee = loyee;
+        this.valueIndice = valueIndice;
+        this.etatDesLieux = etatDesLieux;
+        this.diagnosticTechnique = diagnosticTechnique;
+        this.extraitsReglementCopropriete = extraitsReglementCopropriete;
+        this.listeLoyersReference = listeLoyersReference;
+        this.modalitésServices = modalitésServices;
+        this.acteCautionSolidaire = acteCautionSolidaire;
+        this.remisesCles = remisesCles;
+        this.faitA = faitA;
+        this.habitationExclusivement = habitationExclusivement;
+        this.locID = locID;
+        this.bienID = bienID;
+    }
+
+    public int getLocID() {
+        return locID;
+    }
+
+    public int getBienID() {
+        return bienID;
+    }
+
+
+
+    
     public Locataire getLoc() {
         return loc;
     }
